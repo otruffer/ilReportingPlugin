@@ -128,9 +128,9 @@ class ilReportingPlugin extends ilUserInterfaceHookPlugin {
 
         if (!$additional_reports_created) {
             // Find dropdown ID
-	        //TODO: This can't be good. the check above assures that we have count($entries_cpu_lp) == 0
+	        $entries_cpu = ctrlmmEntry::getEntriesByCmdClass('ilReportingCoursesPerUserGUI');
             /** @var ilCtrlMainMenuEntry $entry */
-            $entry = $entries_cpu_lp[0];
+            $entry = $entries_cpu[0];
             $dropdown_id = $entry->getParent();
 
             $trans = array("langUser" => 'Courses per User, detailed');
