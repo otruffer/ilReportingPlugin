@@ -10,6 +10,10 @@
  */
 class ilReportingConfig {
 
+	const RESTRICTED_NONE = 0;
+	const RESTRICTED_BY_LOCAL_READABILITY = 1;
+	const RESTRICTED_BY_ORG_UNITS = 2;
+
 	/**
 	 * @var string
 	 */

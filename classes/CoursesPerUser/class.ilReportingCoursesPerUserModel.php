@@ -12,6 +12,7 @@ class ilReportingCoursesPerUserModel extends ilReportingModel {
 
     public function __construct() {
         parent::__construct();
+	    $this->pl = new ilReportingPlugin();
     }
 
     /**
@@ -36,18 +37,24 @@ class ilReportingCoursesPerUserModel extends ilReportingModel {
 	    }
 	    $sql  .= ' AND usr_data.active IN(' . ($filters['include_inactive'] ? '1,0' : '1') . ')';
 
-        if ($this->pl->getConfigObject()->getValue('restrict_user_access')) {
+        if ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_LOCAL_READABILITY) {
             $refIds = $this->getRefIdsWhereUserCanAdministrateUsers();
             if (count($refIds)) {
                 $sql .= ' AND usr_data.time_limit_owner IN (' . implode(',', $refIds) .')';
             } else {
                 $sql .= 'AND usr_data.time_limit_owner IN (0)';
             }
+        } elseif ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_ORG_UNITS) {
+	        //TODO: check if this is performant enough.
+	        $users = $this->pl->getRestrictedByOrgUnitsUsers();
+	        $sql .= ' AND usr_data.usr_id IN('.implode(',', $users).')';
         }
+
         return $this->buildRecords($sql);
     }
 
     public function getReportData(array $ids, array $filters) {
+		global $ilUser;
 
 	    $sql  = "SELECT DISTINCT CONCAT_WS('_', rbac_ua.usr_id, rbac_ua.rol_id) AS unique_id, usr.usr_id AS id, obj.title, CONCAT_WS(' > ', gp.title, p.title) AS path,
 	             usr.firstname, usr.lastname, usr.country, usr.department, ut.status_changed, ut.status AS user_status
@@ -67,13 +74,17 @@ class ilReportingCoursesPerUserModel extends ilReportingModel {
         if (count($ids)) {
             $sql .= "AND usr.usr_id IN (" . implode(',', $ids) . ") ";
         }
-        if ($this->pl->getConfigObject()->getValue('restrict_user_access')) {
+        if ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_LOCAL_READABILITY) {
             $refIds = $this->getRefIdsWhereUserCanAdministrateUsers();
             if (count($refIds)) {
                 $sql .= ' AND usr.time_limit_owner IN (' . implode(',', $refIds) .')';
             } else {
                 $sql .= 'AND usr.time_limit_owner IN (0)';
             }
+        } elseif ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_ORG_UNITS) {
+	        //TODO: check if this is performant enough.
+			$users = $this->pl->getRestrictedByOrgUnitsUsers();
+	        $sql .= ' AND usr.usr_id IN('.implode(',', $users).')';
         }
         if (count($filters)) {
             if ($filters['status'] != '') {
@@ -93,4 +104,7 @@ class ilReportingCoursesPerUserModel extends ilReportingModel {
 //        echo $sql; die();
         return $this->buildRecords($sql);
     }
+
+
+
 }

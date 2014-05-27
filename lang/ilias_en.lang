@@ -68,8 +68,12 @@ search_tests#:#Search Tests
 configuration#:#Configuration
 header_image#:#PDF Reports - Header image
 header_image_info#:#Path to an image which is displayed in the header of the PDF reports.<br><b>Requires JasperReport Library!</b>
-restrict_user_access#:#Restricted Access to User Accounts
-restrict_user_access_info#:#Enabled this option only if you want to restrict the access to user accounts. If enabled access to local and global user accounts is only granted when a role has the permission "Read Access to Local User Account".
+restricted_user_access#:#Restrict Access
+no_restriction#:#No Restriction
+restricted_by_local_readability#:#Restrict to local readability
+restricted_by_local_readability_description#:#Access is granted based on whether a role has the permission "Read Access to Local User Account".
+restricted_by_org_units#:#Restrict Access based on organisational units
+restricted_by_org_units_description#:#Access is granted depending on the Organisational Unit permission "View Learning Progress".
 jasper_reports_templates_path#:#PDF Reports - Path templates
 jasper_reports_templates_path_info#:#Path to folder where the Jasper Report templates are stored.<br><b>Requires JasperReport Library!</b>
 conf_saved#:#Configuration saved

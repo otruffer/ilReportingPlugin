@@ -91,6 +91,7 @@ class ilReportingConfigGUI extends ilPluginConfigGUI {
                     }
                 }
             }
+	        $this->saveAdditionalFields();
             ilUtil::sendSuccess($this->pl->txt('conf_saved'), true);
             $ilCtrl->redirect($this, 'configure');
         } else {
@@ -98,6 +99,10 @@ class ilReportingConfigGUI extends ilPluginConfigGUI {
             $tpl->setContent($this->form->getHtml());
         }
     }
+
+	protected function saveAdditionalFields(){
+		$this->object->setValue('restricted_user_access', $this->form->getInput('restricted_user_access'));
+	}
 
     /**
      * Set form values
@@ -111,8 +116,13 @@ class ilReportingConfigGUI extends ilPluginConfigGUI {
                 }
             }
         }
+	    $this->setAdditionalFormValues($values);
         $this->form->setValuesByArray($values);
     }
+
+	protected function setAdditionalFormValues(&$values){
+		$values['restricted_user_access'] = $this->object->getValue('restricted_user_access');
+	}
 
     /**
 	 * @return ilPropertyFormGUI
@@ -121,6 +131,9 @@ class ilReportingConfigGUI extends ilPluginConfigGUI {
 		global $lng, $ilCtrl;
 		include_once('Services/Form/classes/class.ilPropertyFormGUI.php');
 		$this->form = new ilPropertyFormGUI();
+
+		$this->initCustomConfigForm($this->form);
+
 		foreach ($this->getFields() as $key => $item) {
 			$field = new $item['type']($this->pl->txt($key), $key);
 			if ($item['info']) {
@@ -144,16 +157,34 @@ class ilReportingConfigGUI extends ilPluginConfigGUI {
 		return $this->form;
 	}
 
+	/**
+	 * For additional form elements which are not easily configurable.
+	 *
+	 * @param ilPropertyFormGUI $form
+	 */
+	protected function initCustomConfigForm(&$form){
+		$item = new ilRadioGroupInputGUI($this->pl->txt('restricted_user_access'), 'restricted_user_access');
+
+		$option = new ilRadioOption($this->pl->txt('no_restriction'), ilReportingConfig::RESTRICTED_NONE);
+		$item->addOption($option);
+
+		$option = new ilRadioOption($this->pl->txt('restricted_by_local_readability'), ilReportingConfig::RESTRICTED_BY_LOCAL_READABILITY);
+		$option->setInfo($this->pl->txt('restricted_by_local_readability_description'));
+		$item->addOption($option);
+
+		$option = new ilRadioOption($this->pl->txt('restricted_by_org_units'), ilReportingConfig::RESTRICTED_BY_ORG_UNITS);
+		$option->setInfo($this->pl->txt('restricted_by_org_units_description'));
+		$item->addOption($option);
+
+		$form->addItem($item);
+	}
+
     /**
      * Return the configuration fields
      * @return array
      */
     protected function getFields() {
         $this->fields = array(
-            'restrict_user_access' => array(
-                'type' => 'ilCheckboxInputGUI',
-                'info' => true,
-            ),
             'jasper_reports_templates_path' => array(
                 'type' => 'ilTextInputGUI',
                 'info' => true,

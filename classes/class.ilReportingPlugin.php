@@ -160,6 +160,27 @@ class ilReportingPlugin extends ilUserInterfaceHookPlugin {
         $entry->setParent($dropdown_id);
         $entry->create();
     }
+
+	/**
+	 * @return int[] All users that the current user has access to concerning the permissions view_learning_progress[_rec]
+	 */
+	public function getRestrictedByOrgUnitsUsers(){
+		require_once ('./Modules/OrgUnit/classes/class.ilObjOrgUnitTree.php');
+		$orgunits = ilObjOrgUnitTree::_getInstance();
+		$users = array();
+
+		//get the users that are directly accessible
+		$orgus = $orgunits->getOrgusWhereUserHasPermissionForOperation('view_learning_progress');
+		foreach ($orgus as $orgu)
+			$users = array_merge($users, $orgunits->getEmployees($orgu, false));
+
+		//get users that are recursivly accessible.
+		$orgus = $orgunits->getOrgusWhereUserHasPermissionForOperation('view_learning_progress_rec');
+		foreach ($orgus as $orgu)
+			$users = array_merge($users, $orgunits->getEmployees($orgu, true));
+
+		return $users;
+	}
 }
 
 ?>
