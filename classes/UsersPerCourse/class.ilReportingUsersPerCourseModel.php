@@ -67,7 +67,7 @@ class ilReportingUsersPerCourseModel extends ilReportingModel {
         }elseif ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_ORG_UNITS) {
 	        //TODO: check if this is performant enough.
 	        $users = $this->pl->modelCoursesPerUser->getRestrictedByOrgUnitsUsers();
-	        $sql .= ' AND usr.usr_id IN('.implode(',', $users).')';
+	        $sql .= count($users)?' AND usr_data.usr_id IN('.implode(',', $users).')':' AND FALSE';
         }
         if (count($filters)) {
             if ($filters['status'] != '') {
