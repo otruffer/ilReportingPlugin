@@ -1,0 +1,78 @@
+reports#:#Reports
+role#:#Role
+
+report_courses_per_user#:#Report Courses per User
+report_selected_courses_per_user#:#Report Courses for selected Users
+report_all_courses_per_user#:#Report Courses for all Users
+report_users_per_course#:#Report Users per Course
+report_all_users_per_course#:#Report Users for all Courses
+report_selected_users_per_course#:#Report Users for selected Courses
+report_users_per_test#:#Report Users per Test
+report_all_users_per_test#:#Report Users for all Tests
+report_selected_users_per_test#:#Report Users for selected Tests
+
+generated#:#has been generated.
+export_csv#:#Download as CSV
+export_excel#:#Download as Excel
+export_pdf#:#Download as PDF
+back#:#Back to Selection
+back_to_course#:#Back to course
+report_generated#:#A PDF report has been downloaded
+employee_list#:#List of Employees
+course#:#Course
+
+title#:#Title
+lastname#:#Last Name
+firstname#:#First Name
+email#:#E-Mail
+usr_id#:#User-ID
+course_id#:#Course-ID
+login#:#User-ID
+user_status#:#Status
+status_changed#:#Last status changed
+status_changed_from#:#Last status changed from
+status_changed_to#:#Last status changed to
+country#:#Country
+department#:#Department
+path#:#Path
+incl_inactive_users#:#incl. inactive Users
+
+object_title#:#Title
+object_percentage#:#Percentage
+object_status#:#Status
+object_type#:#Type
+object_status_changed#:#Last status changed
+show_objects_in_course#:#Display learning progress of objects in courses
+
+status2#:#Passed
+status1#:#In Progress
+status0#:#Not Attempted
+status3#:#Failed
+
+date_from#:#Start
+date_from_unix#:#Start
+date_to#:#End
+date_to_unix#:#End
+all#:#All
+export_custom_excel#:#Download Formatted Excel
+permission_denied#:#You don't have permission to access this report
+plugin_not_activated#:#Reporting plugin is currently not activated
+
+courses_per_user#:#Courses per User
+users_per_course#:#Users per Course
+users_per_test#:#Users per Test
+search_users#:#Search Users
+search_courses#:#Search Courses
+search_tests#:#Search Tests
+
+configuration#:#Configuration
+header_image#:#PDF Reports - Header image
+header_image_info#:#Path to an image which is displayed in the header of the PDF reports.<br><b>Requires JasperReport Library!</b>
+restrict_user_access#:#Restricted Access to User Accounts
+restrict_user_access_info#:#Enabled this option only if you want to restrict the access to user accounts. If enabled access to local and global user accounts is only granted when a role has the permission "Read Access to Local User Account".
+jasper_reports_templates_path#:#PDF Reports - Path templates
+jasper_reports_templates_path_info#:#Path to folder where the Jasper Report templates are stored.<br><b>Requires JasperReport Library!</b>
+conf_saved#:#Configuration saved
+
+date_of_report#:#Date of report
+owner_of_report#:#Owner of report

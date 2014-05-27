@@ -1,0 +1,77 @@
+reports#:#Reports
+role#:#Rolle
+
+report_courses_per_user#:#Report Kurse pro Benutzer
+report_selected_courses_per_user#:#Report Kurse für ausgewählte Benutzer
+report_all_courses_per_user#:#Report Kurse für alle Benutzer
+report_users_per_course#:#Report Benutzer pro Kurs
+report_all_users_per_course#:#Report Benutzer für alle Kurse
+report_selected_users_per_course#:#Report Benutzer für ausgewählte Kurse
+report_users_per_test#:#Report Benutzer pro Test
+report_all_users_per_test#:#Report Benutzer für alle Tests
+report_selected_users_per_test#:#Report Benutzer für ausgewählte Tests
+
+generated#:#wurde generiert.
+export_csv#:#Download als CSV
+export_excel#:#Download als Excel
+export_pdf#:#Download als PDF
+back#:#zurück zur Auswahl
+back_to_course#:#zurück zum Kurs
+report_generated#:#Ein PDF Report wurde generiert
+employee_list#:#Liste Mitarbeiter
+
+title#:#Titel
+lastname#:#Name
+firstname#:#Vorname
+email#:#E-Mail
+usr_id#:#Benutzer-ID
+course_id#:#Kurs-ID
+login#:#Login
+user_status#:#Status
+status_changed#:#Letzter Statuswechsel
+status_changed_from#:#Statuswechsel von
+status_changed_to#:#Statuswechsel bis
+country#:#Land
+department#:#Abteilung
+path#:#Pfad
+incl_inactive_users#:#inkl. inaktiver Benutzer
+
+object_title#:#Title
+object_percentage#:#Prozent
+object_status#:#Status
+object_type#:#Typ
+object_status_changed#:#Letzter Statuswechsel
+show_objects_in_course#:#Objekte innerhalb Kurse mit Lernfortschritt anzeigen
+
+status2#:#Bestanden
+status1#:#In Bearbeitung
+status0#:#Nicht begonnen
+status3#:#Nicht bestanden
+
+date_from#:#Start
+date_from_unix#:#Start
+date_to#:#Ende
+date_to_unix#:#Ende
+all#:#Alle
+export_custom_excel#:#Download als Excel (formatiert)
+permission_denied#:#Sie haben keine Berechtigung, diesen Report einzusehen
+plugin_not_activated#:#Reporting Plugin ist zur Zeit nicht aktiviert
+
+courses_per_user#:#Kurse pro Benutzer
+users_per_course#:#Benutzer pro Kurs
+users_per_test#:#Benutzer pro Test
+search_users#:#Suche Benutzer
+search_courses#:#Suche Kurse
+search_tests#:#Suche Tests
+
+configuration#:#Konfiguration
+header_image#:#PDF Reports: Header-Bild
+header_image_info#:#Pfad zu einem Bild welches bei den PDF Reports im Header dargestellt wird.<br><b>JasperReport Library wird benötigt!</b>
+restrict_user_access#:#Eingeschränkter Zugriff auf Benutzer
+restrict_user_access_info#:#Wenn aktiviert, benötigen Benutzer das Recht "Lesezugriff auf Benutzerkonten", um Reports für lokale Benutzer in Kategorien und globale Benutzer zu erstellen.
+jasper_reports_templates_path#:#PDF Reports - Pfad templates
+jasper_reports_templates_path_info#:#Pfad zu einem Ordner, in welchem die Jasper Report Templates gespeichert sind.<br><b>JasperReport Library wird benötigt!</b>
+conf_saved#:#Konfiguration gespeichert
+
+date_of_report#:#Datum Report
+owner_of_report#:#Besitzer Report
