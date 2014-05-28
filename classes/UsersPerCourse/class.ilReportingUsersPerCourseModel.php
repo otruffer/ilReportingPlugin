@@ -12,6 +12,7 @@ class ilReportingUsersPerCourseModel extends ilReportingModel {
 
     public function __construct() {
         parent::__construct();
+	    $this->pl = new ilReportingPlugin();
     }
 
     /**
@@ -54,15 +55,19 @@ class ilReportingUsersPerCourseModel extends ilReportingModel {
         if (count($ids)) {
             $sql .= "AND obj.obj_id IN (" . implode(',', $ids) . ") ";
         }
-        $restrictAccess = $this->pl->getConfigObject()->getValue('restrict_user_access');
+        $restrictAccess = $this->pl->getConfigObject()->getValue('restricted_user_access');
         // If coming from course, the user can see all the users from the course if he/she has 'edit_learning_progress' permission
-        if ($restrictAccess && !isset($_GET['rep_crs_ref_id'])) {
+        if ($restrictAccess == ilReportingConfig::RESTRICTED_BY_LOCAL_READABILITY && !isset($_GET['rep_crs_ref_id'])) {
             $refIds = $this->getRefIdsWhereUserCanAdministrateUsers();
             if (count($refIds)) {
                 $sql .= ' AND usr.time_limit_owner IN (' . implode(',', $refIds) .')';
             } else {
                 $sql .= 'AND usr.time_limit_owner IN (0)';
             }
+        }elseif ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_ORG_UNITS) {
+	        //TODO: check if this is performant enough.
+	        $users = $this->pl->modelCoursesPerUser->getRestrictedByOrgUnitsUsers();
+	        $sql .= count($users)?' AND usr_data.usr_id IN('.implode(',', $users).')':' AND FALSE';
         }
         if (count($filters)) {
             if ($filters['status'] != '') {

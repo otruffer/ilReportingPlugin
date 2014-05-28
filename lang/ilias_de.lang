@@ -67,8 +67,12 @@ search_tests#:#Suche Tests
 configuration#:#Konfiguration
 header_image#:#PDF Reports: Header-Bild
 header_image_info#:#Pfad zu einem Bild welches bei den PDF Reports im Header dargestellt wird.<br><b>JasperReport Library wird benötigt!</b>
-restrict_user_access#:#Eingeschränkter Zugriff auf Benutzer
-restrict_user_access_info#:#Wenn aktiviert, benötigen Benutzer das Recht "Lesezugriff auf Benutzerkonten", um Reports für lokale Benutzer in Kategorien und globale Benutzer zu erstellen.
+restricted_user_access#:#Eingeschränkter Zugriff auf die Benutzer
+no_restriction#:#Keine Einschreinkungen
+restricted_by_local_readability#:#Einschränkung aufgrund lokaler Benutzeraccounts
+restricted_by_local_readability_description#:#Der Zugriff auf einen Benutzer ist gewährt, wenn eine Rolle das Recht "Lokale Benutzerkonten einsehen" hat.
+restricted_by_org_units#:#Einschränkung aufgrund der Organisationseinheiten
+restricted_by_org_units_description#:#Der Zugriff auf einen Benutzer ist gewährt, wenn eine Rolle das Recht "Lernfortschritt einsehen" hat.
 jasper_reports_templates_path#:#PDF Reports - Pfad templates
 jasper_reports_templates_path_info#:#Pfad zu einem Ordner, in welchem die Jasper Report Templates gespeichert sind.<br><b>JasperReport Library wird benötigt!</b>
 conf_saved#:#Konfiguration gespeichert

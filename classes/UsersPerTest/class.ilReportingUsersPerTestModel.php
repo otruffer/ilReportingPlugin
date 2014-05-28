@@ -12,6 +12,7 @@ class ilReportingUsersPerTestModel extends ilReportingModel {
 
     public function __construct() {
         parent::__construct();
+	    $this->pl = new ilReportingPlugin();
     }
 
     /**
@@ -52,13 +53,17 @@ class ilReportingUsersPerTestModel extends ilReportingModel {
         if (count($ids)) {
             $sql .= "AND obj.obj_id IN (" . implode(',', $ids) . ") ";
         }
-        if ($this->pl->getConfigObject()->getValue('restrict_user_access')) {
+        if ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_LOCAL_READABILITY) {
             $refIds = $this->getRefIdsWhereUserCanAdministrateUsers();
             if (count($refIds)) {
                 $sql .= ' AND usr.time_limit_owner IN (' . implode(',', $refIds) .')';
             } else {
                 $sql .= 'AND usr.time_limit_owner IN (0)';
             }
+        }elseif ($this->pl->getConfigObject()->getValue('restricted_user_access') == ilReportingConfig::RESTRICTED_BY_ORG_UNITS) {
+	        //TODO: check if this is performant enough.
+	        $users = $this->pl->modelCoursesPerUser->getRestrictedByOrgUnitsUsers();
+	        $sql .= count($users)?' AND usr_data.usr_id IN('.implode(',', $users).')':' AND FALSE';
         }
         if (count($filters)) {
             if ($filters['status'] != '') {
